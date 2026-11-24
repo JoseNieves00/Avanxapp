@@ -4,6 +4,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { Building2, Plus } from 'lucide-react'
 import { CrearObraDialog } from '@/components/obras/crear-obra-dialog'
 import { ObraCard } from '@/components/obras/obra-card'
+import { ReporteRapidoDialog } from '@/components/obras/reporte-rapido-dialog'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { EmptyState } from '@/components/ui/empty-state'
@@ -15,6 +16,7 @@ export const Route = createFileRoute('/')({ component: ObrasPage })
 function ObrasPage() {
   const navigate = useNavigate()
   const [dialogoAbierto, setDialogoAbierto] = useState(false)
+  const [reporteRapidoObraId, setReporteRapidoObraId] = useState<string | null>(null)
 
   const obras = useLiveQuery(
     async () =>
@@ -59,12 +61,12 @@ function ObrasPage() {
             Panel
           </p>
           <h1 className="text-2xl font-extrabold tracking-tight text-navy">
-            Mis obras
+            Mis proyectos
           </h1>
         </div>
         {obras && obras.length > 0 ? (
           <Badge variant="blue">
-            {obras.length} {obras.length === 1 ? 'activa' : 'activas'}
+            {obras.length} {obras.length === 1 ? 'activo' : 'activos'}
           </Badge>
         ) : null}
       </div>
@@ -77,12 +79,12 @@ function ObrasPage() {
       ) : obras.length === 0 ? (
         <EmptyState
           icon={<Building2 className="size-7" aria-hidden="true" />}
-          title="Aún no tienes obras"
-          description="Crea tu primera obra para registrar avance, compras e inventario."
+          title="Aún no tienes proyectos"
+          description="Crea tu primer proyecto para registrar avance, fases y suministros."
           action={
             <Button onClick={() => setDialogoAbierto(true)}>
               <Plus className="size-5" aria-hidden="true" />
-              Crear obra
+              Crear proyecto
             </Button>
           }
         />
@@ -95,6 +97,7 @@ function ObrasPage() {
                 obra={obra}
                 avance={calcularAvance(etapasPorObra.get(obra.id) ?? [])}
                 pendientes={pendientesPorObra.get(obra.id) ?? 0}
+                onReporteRapido={(obraId) => setReporteRapidoObraId(obraId)}
               />
             ))}
           </div>
@@ -105,9 +108,18 @@ function ObrasPage() {
             onClick={() => setDialogoAbierto(true)}
           >
             <Plus className="size-5" aria-hidden="true" />
-            Crear otra obra
+            Crear otro proyecto
           </Button>
         </>
+      )}
+
+      {reporteRapidoObraId && (
+        <ReporteRapidoDialog
+          open={!!reporteRapidoObraId}
+          onClose={() => setReporteRapidoObraId(null)}
+          obraId={reporteRapidoObraId}
+          etapas={etapasPorObra.get(reporteRapidoObraId) ?? []}
+        />
       )}
 
       <CrearObraDialog

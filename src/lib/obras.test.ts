@@ -86,7 +86,13 @@ describe('calcularAvance', () => {  const etapa = (peso: number, porcentaje: num
     nombre: `Etapa ${peso}`,
     orden: 1,
     peso,
+    tipo_medicion: 'cantidad',
+    cantidad_total: 100,
+    cantidad_acumulada: porcentaje,
+    unidad_medida: 'm2',
+    checklists_items: [],
     porcentaje,
+    estado: porcentaje >= 100 ? 'completada' : 'en_progreso',
     deleted_at: null,
     client_updated_at: '2026-11-05T00:00:00.000Z',
   })

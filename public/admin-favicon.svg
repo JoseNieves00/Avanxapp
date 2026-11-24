@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B2D5B" />
+      <stop offset="100%" stop-color="#031226" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9900" />
+      <stop offset="100%" stop-color="#FF6600" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Shield Base -->
+  <path d="M32 4 L56 12 C56 36 32 58 32 60 C32 58 8 36 8 12 Z" fill="url(#shieldGrad)" stroke="url(#goldGrad)" stroke-width="3" stroke-linejoin="round" />
+  
+  <!-- Inner Shield Highlight -->
+  <path d="M32 9 L51 15 C51 34 32 52 32 54 C32 52 13 34 13 15 Z" fill="none" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="1.5" />
+  
+  <!-- Security Lock Center -->
+  <rect x="23" y="29" width="18" height="15" rx="3" fill="url(#goldGrad)" />
+  <path d="M26 29 V22 C26 18.7 28.7 16 32 16 C35.3 16 38 18.7 38 22 V29" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" />
+  <circle cx="32" cy="35" r="2" fill="#0B2D5B" />
+  <path d="M32 37 V40" stroke="#0B2D5B" stroke-width="2" stroke-linecap="round" />
+</svg>

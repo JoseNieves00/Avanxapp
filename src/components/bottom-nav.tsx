@@ -8,8 +8,8 @@ import {
 } from 'lucide-react'
 
 const items: { to: string; label: string; icon: LucideIcon }[] = [
-  { to: '/', label: 'Obras', icon: Building2 },
-  { to: '/materiales', label: 'Materiales', icon: Package },
+  { to: '/', label: 'Proyectos', icon: Building2 },
+  { to: '/materiales', label: 'Suministros', icon: Package },
   { to: '/proveedores', label: 'Proveedores', icon: Truck },
   { to: '/cuenta', label: 'Cuenta', icon: UserRound },
 ]
@@ -20,7 +20,7 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Navegación principal"
-      className="fixed inset-x-0 bottom-0 z-20 border-t border-gray-100 bg-white pb-[env(safe-area-inset-bottom)]"
+      className="fixed inset-x-0 bottom-0 z-20 border-t border-gray-100 bg-white pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       <ul className="mx-auto grid max-w-3xl grid-cols-4">
         {items.map(({ to, label, icon: Icon }) => {
